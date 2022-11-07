@@ -1,0 +1,64 @@
+apply plugin: 'com.android.library'
+android {
+    compileSdkVersion cfgs.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion cfgs.minSdkVersion
+        targetSdkVersion cfgs.targetSdkVersion
+
+        multiDexEnabled true
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    sourceSets{
+        main{
+            res.srcDirs=[
+                    'src//main/res',//必须要有，倒数两个顺序必须是这样子，不能乱
+            ]
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'com.google.android.material:material:1.7.0'
+    
+    //网路请求库
+    implementation "com.squareup.okhttp3:okhttp:${cfgs.okhttp3_version}"
+
+    //阿里 fastjson
+    implementation "com.alibaba:fastjson:${cfgs.fastjson_version}"
+
+    // glide 图片加载
+    implementation "com.github.bumptech.glide:glide:${cfgs.glide_version}"
+
+    // 阿里路由 arouter
+    implementation "com.alibaba:arouter-api:${cfgs.arouter_version}"
+
+    // MQTT
+    implementation "org.eclipse.paho:org.eclipse.paho.client.mqttv3:${cfgs.mqtt_version}"
+    implementation "org.eclipse.paho:org.eclipse.paho.android.service:${cfgs.mqtt_version}"
+
+    /********************极光TV***********************/
+    implementation fileTree(include: ['agentvuid-release-1.2.0.aar'], dir: 'libs')
+
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.10.0'
+
+}

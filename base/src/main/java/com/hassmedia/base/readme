@@ -1,0 +1,30 @@
+/*** OKHTTP ********/
+
+Map<String, String> params = new HashMap<>();
+params.put("username", mAccountString);
+params.put("password", mPwdString);
+
+OkHttpUtilsPlus.instance().postJson(URL, map, new OkHttpUtilsPlus.OkHttpResult() {
+            @Override
+            public void onError() {
+                ToastUtils.showToast(activity,"网络出错");
+            }
+
+            @Override
+            public void onSuccessful(String body) {
+                JSONObject rootJSONObject = JSON.parseObject(body);
+                int status = rootJSONObject.getInteger("status");
+                if (status == 0){
+                    ToastUtils.showToast(activity,rootJSONObject.getString("msg"));
+                    return;
+                }
+            }
+        });
+
+
+/********************************************ARouter***************************/
+
+Arouter 调用传对象
+
+ARouter.getInstance().build(ARouterConstants.RoomTypeActivity).withObject("hotel",hotelEntity).navigation();
+

@@ -1,0 +1,24 @@
+ext {
+    cfgs = [
+            compileSdkVersion             : 32,
+//            buildToolsVersion             : "29.0.2",
+            minSdkVersion                 : 22,
+            targetSdkVersion              : 30,
+            versionCode                   : 1,
+            versionName                   : "1.0.0",
+
+            version_appcompat             : "1.5.1",
+
+            greendao_version              : "3.2.2",               //数据库
+            okhttp3_version               : "4.10.0",               //OKHTTP
+            fastjson_version              : "1.2.73",              //阿里 fastjson
+            fastjson_android_version      : "1.1.71.android",      //阿里 fastjson android
+            glide_version                 : "4.14.2",              // glide
+            arouter_version               : "1.5.0",              //阿里路由 arouter
+
+            arouter_compiler_version      : "1.2.2",             //阿里路由 arouter compiler
+            base_recycler_version         : "2.9.46",              //BaseRecyclerViewAdapterHelper
+
+            mqtt_version                  : "1.1.1"                //MQTT
+    ]
+}
